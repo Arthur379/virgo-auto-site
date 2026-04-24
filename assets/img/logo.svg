@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" role="img">
+  <title>Virgo Auto logo</title>
+  <!-- Angular VA monogram — geometric/industrial style -->
+  <!-- V letter -->
+  <polygon points="2,4 10,4 14,28 18,4 26,4 19,36 9,36" fill="#D97706"/>
+  <!-- A letter -->
+  <polygon points="22,36 26,4 34,4 38,36 31,36 30,24 26,24 25,36" fill="#D97706"/>
+  <rect x="26" y="17" width="5" height="6" fill="#0A0A0B"/>
+</svg>

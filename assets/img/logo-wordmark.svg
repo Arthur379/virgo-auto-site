@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" role="img">
+  <title>Virgo Auto</title>
+  <!-- VA monogram mark -->
+  <polygon points="2,4 10,4 14,28 18,4 26,4 19,36 9,36" fill="#D97706"/>
+  <polygon points="22,36 26,4 34,4 38,36 31,36 30,24 26,24 25,36" fill="#D97706"/>
+  <rect x="26" y="17" width="5" height="6" fill="#0A0A0B"/>
+  <!-- VIRGO wordmark -->
+  <text x="48" y="28" fill="#F5F5F2" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif" font-weight="900" font-size="18" letter-spacing="2">VIRGO</text>
+</svg>

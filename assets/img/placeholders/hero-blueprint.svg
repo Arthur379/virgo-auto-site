@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img">
+  <title>Blueprint-style vehicle technical drawing</title>
+  <defs>
+    <pattern id="bp-grid" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M50 0H0v50" fill="none" stroke="#D97706" stroke-opacity=".06" stroke-width=".5"/>
+    </pattern>
+    <pattern id="bp-grid-sm" width="10" height="10" patternUnits="userSpaceOnUse">
+      <path d="M10 0H0v10" fill="none" stroke="#D97706" stroke-opacity=".03" stroke-width=".25"/>
+    </pattern>
+  </defs>
+  <!-- Grids -->
+  <rect width="1200" height="900" fill="url(#bp-grid-sm)"/>
+  <rect width="1200" height="900" fill="url(#bp-grid)"/>
+  <!-- Top-down car outline -->
+  <g fill="none" stroke="#D97706" stroke-width="1.5" stroke-linejoin="round">
+    <!-- Body shell top view -->
+    <path d="M600 200 C620 200 680 210 700 230 L720 280 740 350 745 450 740 550 720 620 700 670 680 690 620 700 600 700 580 700 520 690 500 670 480 620 460 550 455 450 460 350 480 280 500 230 520 210 580 200Z"/>
+    <!-- Windscreen -->
+    <path d="M530 310 Q600 295 670 310 L665 370 Q600 360 535 370Z" stroke-opacity=".7"/>
+    <!-- Rear window -->
+    <path d="M535 560 Q600 570 665 560 L670 620 Q600 635 530 620Z" stroke-opacity=".7"/>
+    <!-- Bonnet line -->
+    <path d="M520 270 Q600 260 680 270" stroke-dasharray="4 3" stroke-opacity=".5"/>
+    <!-- Boot line -->
+    <path d="M520 640 Q600 650 680 640" stroke-dasharray="4 3" stroke-opacity=".5"/>
+    <!-- Centre line -->
+    <line x1="600" y1="195" x2="600" y2="705" stroke-dasharray="8 4" stroke-opacity=".2"/>
+    <!-- Door lines -->
+    <path d="M460 400 Q465 390 470 370" stroke-opacity=".5"/>
+    <path d="M740 400 Q735 390 730 370" stroke-opacity=".5"/>
+    <path d="M460 500 Q465 510 470 530" stroke-opacity=".5"/>
+    <path d="M740 500 Q735 510 730 530" stroke-opacity=".5"/>
+    <!-- Wing mirrors -->
+    <ellipse cx="450" cy="340" rx="15" ry="8" stroke-opacity=".6"/>
+    <ellipse cx="750" cy="340" rx="15" ry="8" stroke-opacity=".6"/>
+    <!-- Wheels top-down -->
+    <rect x="445" y="270" width="30" height="60" rx="6" stroke-opacity=".8"/>
+    <rect x="725" y="270" width="30" height="60" rx="6" stroke-opacity=".8"/>
+    <rect x="445" y="570" width="30" height="60" rx="6" stroke-opacity=".8"/>
+    <rect x="725" y="570" width="30" height="60" rx="6" stroke-opacity=".8"/>
+  </g>
+  <!-- Measurement ticks — horizontal -->
+  <g stroke="#D97706" stroke-width=".8" stroke-opacity=".5">
+    <line x1="380" y1="200" x2="380" y2="700"/>
+    <line x1="375" y1="200" x2="385" y2="200"/>
+    <line x1="375" y1="450" x2="385" y2="450"/>
+    <line x1="375" y1="700" x2="385" y2="700"/>
+    <line x1="820" y1="200" x2="820" y2="700"/>
+    <line x1="815" y1="200" x2="825" y2="200"/>
+    <line x1="815" y1="700" x2="825" y2="700"/>
+  </g>
+  <!-- Dimension labels -->
+  <text x="370" y="455" text-anchor="end" fill="#D97706" fill-opacity=".6" font-family="monospace" font-size="11">4650mm</text>
+  <text x="600" y="760" text-anchor="middle" fill="#D97706" fill-opacity=".6" font-family="monospace" font-size="11">1820mm</text>
+  <!-- Horizontal dimension line -->
+  <g stroke="#D97706" stroke-width=".8" stroke-opacity=".5">
+    <line x1="455" y1="740" x2="745" y2="740"/>
+    <line x1="455" y1="735" x2="455" y2="745"/>
+    <line x1="745" y1="735" x2="745" y2="745"/>
+  </g>
+  <!-- Damage zone callout 1 — front left wing -->
+  <circle cx="475" cy="280" r="30" fill="none" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="4 2"/>
+  <circle cx="475" cy="280" r="3" fill="#F59E0B"/>
+  <line x1="505" y1="260" x2="560" y2="140" stroke="#F59E0B" stroke-width=".8"/>
+  <text x="565" y="138" fill="#F59E0B" font-family="monospace" font-size="11">DMG-01</text>
+  <!-- Damage zone callout 2 — rear right quarter -->
+  <circle cx="730" cy="590" r="28" fill="none" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="4 2"/>
+  <circle cx="730" cy="590" r="3" fill="#F59E0B"/>
+  <line x1="758" y1="575" x2="850" y2="520" stroke="#F59E0B" stroke-width=".8"/>
+  <text x="855" y="518" fill="#F59E0B" font-family="monospace" font-size="11">DMG-02</text>
+  <!-- Title block -->
+  <rect x="900" y="800" width="260" height="70" fill="none" stroke="#D97706" stroke-opacity=".3" stroke-width=".8"/>
+  <text x="910" y="825" fill="#D97706" fill-opacity=".5" font-family="monospace" font-size="10">IRONFRAME AUTO</text>
+  <text x="910" y="845" fill="#D97706" fill-opacity=".4" font-family="monospace" font-size="9">VEHICLE ASSESSMENT</text>
+  <text x="910" y="860" fill="#D97706" fill-opacity=".3" font-family="monospace" font-size="8">SCALE 1:10 | TOP VIEW</text>
+</svg>

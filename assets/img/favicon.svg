@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img">
+  <title>Virgo Auto favicon</title>
+  <!-- VA monogram — geometric/industrial style -->
+  <!-- V letter -->
+  <polygon points="1,3 7,3 11,22 15,3 21,3 15,29 7,29" fill="#D97706"/>
+  <!-- A letter -->
+  <polygon points="17,29 21,3 28,3 31,29 25,29 24,20 21,20 20,29" fill="#D97706"/>
+  <rect x="21" y="14" width="4" height="5" fill="#0A0A0B"/>
+</svg>

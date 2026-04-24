@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" role="img">
+  <title>Panel repair complete — after repair</title>
+  <defs>
+    <pattern id="sg2" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M30 0H0v30" fill="none" stroke="#4ADE80" stroke-opacity=".03" stroke-width=".4"/>
+    </pattern>
+  </defs>
+  <rect width="600" height="400" fill="#0A0A0B"/>
+  <rect width="600" height="400" fill="url(#sg2)"/>
+  <!-- Ground line -->
+  <line x1="40" y1="320" x2="560" y2="320" stroke="#F5F5F2" stroke-opacity=".15" stroke-width=".5"/>
+  <!-- Side-view car silhouette — clean, no damage -->
+  <g fill="none" stroke="#F5F5F2" stroke-width="1.2" stroke-linejoin="round" stroke-opacity=".8">
+    <!-- Body -->
+    <path d="M90 310 L80 280 75 260 80 240 100 230 120 220 160 200 200 185 230 175 260 170 310 168 350 170 380 175 400 180 430 190 460 210 480 230 510 245 520 260 525 280 520 310"/>
+    <!-- Roof -->
+    <path d="M200 185 L220 145 260 125 310 120 360 125 390 140 410 170" stroke-opacity=".6"/>
+    <!-- Windows -->
+    <path d="M215 180 L230 148 265 132 310 128 350 130 370 140 385 160 395 178" stroke-dasharray="3 2" stroke-opacity=".4"/>
+    <!-- Wheel arches -->
+    <path d="M110 310 Q110 270 140 270 Q170 270 170 310" stroke-opacity=".9"/>
+    <path d="M420 310 Q420 270 450 270 Q480 270 480 310" stroke-opacity=".9"/>
+    <!-- Wheels -->
+    <circle cx="140" cy="305" r="28" stroke-opacity=".7"/>
+    <circle cx="140" cy="305" r="18" stroke-opacity=".4"/>
+    <circle cx="450" cy="305" r="28" stroke-opacity=".7"/>
+    <circle cx="450" cy="305" r="18" stroke-opacity=".4"/>
+    <!-- Door line -->
+    <line x1="290" y1="175" x2="290" y2="310" stroke-dasharray="4 3" stroke-opacity=".3"/>
+    <!-- Headlamp -->
+    <ellipse cx="85" cy="250" rx="8" ry="14" stroke-opacity=".5"/>
+    <!-- Tail lamp -->
+    <ellipse cx="520" cy="260" rx="6" ry="12" stroke-opacity=".5"/>
+  </g>
+  <!-- Green check mark -->
+  <circle cx="100" cy="248" r="28" fill="none" stroke="#4ADE80" stroke-width="1.5" stroke-opacity=".6"/>
+  <path d="M85 248 L95 258 L118 235" fill="none" stroke="#4ADE80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- COMPLETE label -->
+  <rect x="440" y="20" width="140" height="26" rx="3" fill="#4ADE80" fill-opacity=".12" stroke="#4ADE80" stroke-width="1"/>
+  <text x="510" y="38" text-anchor="middle" fill="#4ADE80" font-family="monospace" font-weight="700" font-size="11">COMPLETE</text>
+  <!-- Dimension line along car length -->
+  <g stroke="#4ADE80" stroke-width=".6" stroke-opacity=".3">
+    <line x1="75" y1="345" x2="525" y2="345"/>
+    <line x1="75" y1="340" x2="75" y2="350"/>
+    <line x1="525" y1="340" x2="525" y2="350"/>
+  </g>
+  <text x="300" y="360" text-anchor="middle" fill="#4ADE80" fill-opacity=".4" font-family="monospace" font-size="9">4520mm</text>
+</svg>

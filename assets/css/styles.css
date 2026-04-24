@@ -1,0 +1,1970 @@
+/* ========================================
+   IRONFRAME AUTO — MASTER STYLESHEET
+   Dark-themed design system for auto body shop
+   Single CSS file for the entire site
+   ======================================== */
+
+
+/* ========================================
+   1. DESIGN TOKENS (Custom Properties)
+   All colours, fonts, spacing, and radii
+   are defined here for global consistency.
+   ======================================== */
+
+:root {
+  /* ---- Backgrounds ---- */
+  --bg:           #0A0A0B;
+  --bg-elev:      #121215;
+  --bg-card:      #17171B;
+  --bg-card-2:    #1E1E24;
+
+  /* ---- Borders ---- */
+  --border:        rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+
+  /* ---- Text ---- */
+  --text:       #F5F5F2;
+  --text-muted: #A3A39E;
+  --text-dim:   #6B6B66;
+
+  /* ---- Accent & Semantic ---- */
+  --accent:      #D97706;
+  --accent-2:    #F59E0B;
+  --accent-glow: rgba(217, 119, 6, 0.15);
+  --success:     #4ADE80;
+  --whatsapp:    #25D366;
+  --danger:      #EF4444;
+
+  /* ---- Typography ---- */
+  --font-display: 'Bebas Neue', 'Impact', sans-serif;
+  --font-body:    'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, monospace;
+
+  /* ---- Layout ---- */
+  --maxw: 1200px;
+
+  /* ---- Radii ---- */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+}
+
+
+/* ========================================
+   2. RESET & BASE STYLES
+   Box-sizing, margin reset, html/body
+   defaults, smooth scrolling, selection.
+   ======================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text);
+  background-color: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Selection highlight uses amber accent */
+::selection {
+  background-color: var(--accent);
+  color: var(--bg);
+}
+
+::-moz-selection {
+  background-color: var(--accent);
+  color: var(--bg);
+}
+
+/* Base element resets */
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+fieldset {
+  border: none;
+}
+
+/* Remove default details marker in all browsers */
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+details summary {
+  list-style: none;
+}
+
+
+/* ========================================
+   3. ACCESSIBILITY — FOCUS STATES
+   Visible focus on all interactive elements.
+   2px amber outline, 2px offset.
+   ======================================== */
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Remove default focus ring; use focus-visible only */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+
+/* ========================================
+   4. SKIP-TO-CONTENT LINK
+   Visually hidden until focused via Tab.
+   ======================================== */
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  z-index: 9999;
+  padding: 12px 24px;
+  background-color: var(--accent);
+  color: var(--bg);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: var(--radius-md);
+  transition: top 200ms ease-out;
+}
+
+.skip-link:focus {
+  top: 16px;
+}
+
+
+/* ========================================
+   5. TYPOGRAPHY
+   Headings use Bebas Neue (display).
+   Body uses Inter. Monospace helpers.
+   ======================================== */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 400;           /* Bebas Neue only has one weight */
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+h1 {
+  font-size: clamp(36px, 5vw + 1rem, 76px);
+}
+
+h2 {
+  font-size: clamp(28px, 3.5vw + 0.5rem, 52px);
+}
+
+h3 {
+  font-size: clamp(22px, 2.5vw + 0.25rem, 36px);
+}
+
+h4 {
+  font-size: clamp(18px, 2vw, 28px);
+}
+
+h5 {
+  font-size: 20px;
+}
+
+h6 {
+  font-size: 16px;
+}
+
+p {
+  margin-bottom: 1em;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+strong, b {
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* Monospace utility */
+.mono {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Eyebrow — small mono label above headings */
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+
+/* ========================================
+   6. LAYOUT — CONTAINER, SECTION, GRIDS
+   Max-width 1200px, centred with padding.
+   Responsive grid utilities.
+   ======================================== */
+
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* Standard vertical section padding */
+.section {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+/* Responsive grids — default to single column, expand at breakpoints */
+.grid-2,
+.grid-3,
+.grid-4,
+.grid-6 {
+  display: grid;
+  gap: 24px;
+}
+
+.grid-2 { grid-template-columns: 1fr; }
+.grid-3 { grid-template-columns: 1fr; }
+.grid-4 { grid-template-columns: 1fr; }
+.grid-6 { grid-template-columns: repeat(2, 1fr); }
+
+@media (min-width: 540px) {
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid-6 { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 760px) {
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid-6 { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 900px) {
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+  .grid-6 { grid-template-columns: repeat(6, 1fr); }
+}
+
+
+/* ========================================
+   7. ANNOUNCEMENT BAR
+   Full-width amber strip at the very top.
+   Dark text, small padding, centred.
+   ======================================== */
+
+.announce {
+  background-color: var(--accent);
+  color: var(--bg);
+  text-align: center;
+  padding: 8px 20px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+}
+
+.announce a {
+  color: var(--bg);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.announce a:hover {
+  text-decoration: none;
+}
+
+
+/* ========================================
+   8. NAVIGATION
+   Sticky nav bar with logo, links, CTA.
+   Dropdown submenus. Hamburger on mobile.
+   Full-screen mobile overlay menu.
+   ======================================== */
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: var(--bg-elev);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 64px;
+}
+
+/* Logo */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-size: 22px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.nav-logo img,
+.nav-logo svg {
+  height: 32px;
+  width: auto;
+}
+
+/* Desktop link list */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nav-links a,
+.nav-links button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 14px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-muted);
+  border-radius: var(--radius-sm);
+  transition: color 200ms ease-out, background-color 200ms ease-out;
+  white-space: nowrap;
+}
+
+.nav-links a:hover,
+.nav-links button:hover,
+.nav-links a[aria-current="page"] {
+  color: var(--text);
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+/* Dropdown submenu */
+.nav-dropdown-wrap {
+  position: relative;
+}
+
+.nav-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 220px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 200ms ease-out, visibility 200ms ease-out;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.nav-dropdown-wrap:hover .nav-dropdown,
+.nav-dropdown-wrap:focus-within .nav-dropdown {
+  opacity: 1;
+  visibility: visible;
+}
+
+.nav-dropdown a {
+  display: block;
+  padding: 10px 14px;
+  font-size: 14px;
+  color: var(--text-muted);
+  border-radius: var(--radius-sm);
+  transition: color 150ms ease-out, background-color 150ms ease-out;
+}
+
+.nav-dropdown a:hover {
+  color: var(--text);
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+/* Nav CTA button (amber) */
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  background-color: var(--accent);
+  color: var(--bg);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  transition: background-color 200ms ease-out;
+  white-space: nowrap;
+}
+
+.nav-cta:hover {
+  background-color: var(--accent-2);
+}
+
+/* Hamburger toggle — hidden on desktop */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--text);
+  border-radius: 2px;
+  transition: transform 250ms ease-out, opacity 200ms ease-out;
+}
+
+/* Hamburger open state */
+.hamburger[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Full-screen mobile menu overlay */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background-color: var(--bg);
+  display: flex;
+  flex-direction: column;
+  padding: 80px 24px 32px;
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 250ms ease-out, visibility 250ms ease-out;
+}
+
+.mobile-menu[aria-hidden="false"],
+.mobile-menu.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-menu a {
+  display: block;
+  padding: 16px 0;
+  font-family: var(--font-display);
+  font-size: 28px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+  transition: color 150ms ease-out;
+}
+
+.mobile-menu a:hover {
+  color: var(--accent);
+}
+
+/* Responsive nav: show hamburger, hide links below 900px */
+@media (max-width: 899px) {
+  .nav-links {
+    display: none;
+  }
+
+  .nav-cta.desktop-only {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
+
+
+/* ========================================
+   9. HERO SECTION
+   Large intro block with grid-pattern bg,
+   radial amber glow, two-column layout.
+   ======================================== */
+
+.hero {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+
+  /* Subtle 48px grid pattern at 1.5% opacity */
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-color: var(--bg);
+}
+
+/* Radial amber glow behind hero content */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: 30%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero > .container {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+/* Left column — text content */
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Right column — visual / SVG illustration area */
+.hero-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-visual svg,
+.hero-visual img {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+}
+
+/* Eyebrow above hero heading */
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* Hero H1 — large display heading */
+.hero h1,
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5vw + 1rem, 76px);
+  line-height: 0.95;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+/* Lede paragraph under the H1 */
+.hero-lede {
+  font-size: clamp(16px, 1.2vw + 0.25rem, 18px);
+  line-height: 1.65;
+  color: var(--text-muted);
+  max-width: 560px;
+}
+
+/* Stacked hero on mobile */
+@media (max-width: 899px) {
+  .hero > .container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero-content {
+    align-items: center;
+  }
+
+  .hero-lede {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-visual {
+    order: -1;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+}
+
+
+/* ========================================
+   10. CTA BUTTONS
+   Base .btn, plus variants for WhatsApp,
+   call, outline, and grouped buttons.
+   ======================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 200ms ease-out, border-color 200ms ease-out, transform 150ms ease-out;
+  white-space: nowrap;
+  line-height: 1;
+  min-height: 44px;                 /* Accessibility: 44px tap target */
+}
+
+.btn svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* WhatsApp CTA — green */
+.btn-whatsapp {
+  background-color: var(--whatsapp);
+  color: #fff;
+}
+
+.btn-whatsapp:hover {
+  background-color: #1ebe57;
+}
+
+/* Call / primary CTA — amber */
+.btn-call {
+  background-color: var(--accent);
+  color: var(--bg);
+}
+
+.btn-call:hover {
+  background-color: var(--accent-2);
+}
+
+/* Outline CTA — border only */
+.btn-outline {
+  background-color: transparent;
+  color: var(--text);
+  border: 1px solid var(--border-strong);
+}
+
+.btn-outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Grouped buttons in a row */
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Centre button group on mobile hero */
+@media (max-width: 899px) {
+  .hero .btn-group {
+    justify-content: center;
+  }
+}
+
+/* Full-width buttons on small mobile */
+@media (max-width: 539px) {
+  .btn-group .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+
+/* ========================================
+   11. TRUST ROW
+   Horizontal strip of small trust items
+   with SVG icon and label text.
+   ======================================== */
+
+.trust-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: center;
+  padding-top: 24px;
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+.trust-item svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+/* Centre on mobile */
+@media (max-width: 899px) {
+  .trust-row {
+    justify-content: center;
+  }
+}
+
+
+/* ========================================
+   12. SCOPE BLOCK
+   Two-column "What we do / Don't do" lists
+   with check and X icons.
+   ======================================== */
+
+.scope {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.scope-do,
+.scope-dont {
+  padding: 28px;
+  border-radius: var(--radius-lg);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+}
+
+.scope-do h3,
+.scope-dont h3 {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+  margin-bottom: 16px;
+}
+
+.scope-do li,
+.scope-dont li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 0;
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* Check icon colour */
+.scope-do li::before {
+  content: '';
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234ADE80' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* X icon colour */
+.scope-dont li::before {
+  content: '';
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23EF4444' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'/%3E%3Cline x1='6' y1='6' x2='18' y2='18'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 759px) {
+  .scope {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ========================================
+   13. SERVICE CARDS
+   Card grid for services list. Dark bg,
+   border, hover accent, numbered top-right.
+   ======================================== */
+
+.service-card {
+  position: relative;
+  padding: 32px 28px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: border-color 250ms ease-out, box-shadow 250ms ease-out;
+}
+
+.service-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 24px var(--accent-glow);
+}
+
+/* Numbered label in top-right corner */
+.service-card-number {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-dim);
+  letter-spacing: 0.06em;
+}
+
+.service-card h3 {
+  font-family: var(--font-display);
+  font-size: 24px;
+  margin-bottom: 12px;
+  line-height: 1;
+}
+
+.service-card p {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+
+.service-card-icon {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 16px;
+  color: var(--accent);
+}
+
+
+/* ========================================
+   14. STEP CARDS
+   Numbered process steps (01, 02, 03).
+   Vertical flow with mono number labels.
+   ======================================== */
+
+.step-card {
+  padding: 28px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+
+.step-card-number {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.step-card h3 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  margin-bottom: 10px;
+  line-height: 1.1;
+}
+
+.step-card p {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+
+/* ========================================
+   15. PROOF BAR (Stats / Social Proof)
+   Horizontal row of 4 stat items.
+   Large number in Bebas Neue, label mono.
+   ======================================== */
+
+.proof-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 48px;
+  padding: 48px 0;
+}
+
+.proof-stat {
+  text-align: center;
+  min-width: 120px;
+}
+
+.proof-stat-number {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4vw, 56px);
+  line-height: 1;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+
+.proof-stat-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-top: 8px;
+}
+
+
+/* ========================================
+   16. TOWN CHIPS
+   Flex-wrapped list of small rounded pills
+   for service area / town names.
+   ======================================== */
+
+.chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  display: inline-block;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-dim);
+  background-color: transparent;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  transition: border-color 200ms ease-out, color 200ms ease-out;
+  white-space: nowrap;
+}
+
+.chip:hover {
+  border-color: var(--border-strong);
+  color: var(--text-muted);
+}
+
+
+/* ========================================
+   17. FAQ ACCORDION
+   Uses native <details>/<summary>.
+   Plus/minus indicator, border separator,
+   smooth open animation.
+   ======================================== */
+
+.faq-item {
+  border-bottom: 1px solid var(--border);
+}
+
+.faq-item:first-child {
+  border-top: 1px solid var(--border);
+}
+
+.faq-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 0;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  transition: color 150ms ease-out;
+  min-height: 44px;               /* Tap target */
+}
+
+.faq-item summary:hover {
+  color: var(--accent);
+}
+
+/* Plus/minus indicator */
+.faq-item summary::after {
+  content: '+';
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 20px;
+  font-weight: 300;
+  color: var(--text-dim);
+  width: 24px;
+  text-align: center;
+  transition: transform 200ms ease-out;
+}
+
+.faq-item[open] summary::after {
+  content: '\2212';                /* Minus character */
+  transform: rotate(180deg);
+}
+
+/* Answer body */
+.faq-item .faq-answer {
+  padding-bottom: 20px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-muted);
+  max-width: 720px;
+}
+
+/* Smooth open animation */
+.faq-item .faq-answer {
+  animation: faqSlideIn 250ms ease-out;
+}
+
+@keyframes faqSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ========================================
+   18. PRICING TABLE
+   Dark-themed table with row borders.
+   ======================================== */
+
+.price-table {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.price-table thead th {
+  padding: 14px 20px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: left;
+  color: var(--text-dim);
+  background-color: var(--bg-card-2);
+  border-bottom: 1px solid var(--border);
+}
+
+.price-table tbody td {
+  padding: 14px 20px;
+  font-size: 14px;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+}
+
+.price-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.price-table tbody tr {
+  background-color: var(--bg-card);
+  transition: background-color 150ms ease-out;
+}
+
+.price-table tbody tr:hover {
+  background-color: var(--bg-card-2);
+}
+
+/* Price column — highlight amber */
+.price-table .price-col {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+/* Responsive horizontal scroll on small screens */
+.price-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+
+/* ========================================
+   19. CTA SECTION
+   Centred call-to-action block with amber
+   glow background, generous padding.
+   ======================================== */
+
+.cta-section {
+  position: relative;
+  text-align: center;
+  padding: 80px 20px;
+  overflow: hidden;
+}
+
+/* Amber radial glow behind CTA */
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 400px;
+  background: radial-gradient(ellipse, var(--accent-glow) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cta-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+.cta-section h2 {
+  margin-bottom: 16px;
+}
+
+.cta-section p {
+  font-size: 17px;
+  color: var(--text-muted);
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 28px;
+}
+
+.cta-section .btn-group {
+  justify-content: center;
+}
+
+
+/* ========================================
+   20. FOOTER
+   Elevated background, 4-column grid,
+   bottom bar with border-top and copyright.
+   ======================================== */
+
+.footer {
+  background-color: var(--bg-elev);
+  border-top: 1px solid var(--border);
+  padding-top: 56px;
+  padding-bottom: 24px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  margin-bottom: 48px;
+}
+
+.footer-col h4 {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+
+.footer-col a {
+  display: block;
+  padding: 4px 0;
+  font-size: 14px;
+  color: var(--text-muted);
+  transition: color 150ms ease-out;
+}
+
+.footer-col a:hover {
+  color: var(--text);
+}
+
+.footer-col p {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* Bottom bar — copyright, legal links */
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+.footer-bottom a {
+  color: var(--text-dim);
+  transition: color 150ms ease-out;
+}
+
+.footer-bottom a:hover {
+  color: var(--text-muted);
+}
+
+/* Responsive footer grid */
+@media (max-width: 899px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 539px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ========================================
+   21. STICKY MOBILE BAR
+   Fixed bottom bar with two CTA buttons.
+   Hidden on desktop (>= 760px).
+   ======================================== */
+
+.mobile-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: none;                    /* Hidden by default (desktop) */
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background-color: var(--bg-elev);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.mobile-bar .btn {
+  flex: 1;
+  justify-content: center;
+  padding: 12px 16px;
+  font-size: 14px;
+  min-height: 44px;               /* Tap target */
+}
+
+/* Show on mobile and add body padding to compensate */
+@media (max-width: 759px) {
+  .mobile-bar {
+    display: flex;
+  }
+
+  body {
+    padding-bottom: 72px;
+  }
+}
+
+
+/* ========================================
+   22. BEFORE / AFTER CARDS
+   Side-by-side image comparison cards.
+   ======================================== */
+
+.ba-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background-color: var(--bg-card);
+}
+
+.ba-card-side {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background-color: var(--bg-card-2);
+  overflow: hidden;
+}
+
+.ba-card-side img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Label overlay (BEFORE / AFTER) */
+.ba-card-label {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text);
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+}
+
+@media (max-width: 539px) {
+  .ba-card {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ========================================
+   23. COVERAGE / MAP SECTION
+   Two-column grid: map visual + text/chips.
+   ======================================== */
+
+.coverage-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.coverage-map {
+  aspect-ratio: 4 / 3;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.coverage-map img,
+.coverage-map svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 759px) {
+  .coverage-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ========================================
+   24. TRADE SECTION
+   Distinct background for B2B / trade
+   customers block.
+   ======================================== */
+
+.trade-block {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 48px 40px;
+}
+
+.trade-block .eyebrow {
+  color: var(--accent-2);
+}
+
+.trade-block h2 {
+  margin-bottom: 16px;
+}
+
+.trade-block p {
+  max-width: 600px;
+}
+
+.trade-block ul li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 6px 0;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+@media (max-width: 539px) {
+  .trade-block {
+    padding: 32px 24px;
+  }
+}
+
+
+/* ========================================
+   25. ARTICLE / LONG-FORM CONTENT
+   Styled for FAQ deep-dive pages, guides,
+   and blog posts. Proper spacing and links.
+   ======================================== */
+
+.article-content {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.article-content h2 {
+  margin-top: 48px;
+  margin-bottom: 16px;
+}
+
+.article-content h3 {
+  margin-top: 36px;
+  margin-bottom: 12px;
+}
+
+.article-content p {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+/* Inline links — amber coloured */
+.article-content a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(217, 119, 6, 0.4);
+  transition: text-decoration-color 200ms ease-out;
+}
+
+.article-content a:hover {
+  text-decoration-color: var(--accent);
+}
+
+/* Lists in article content */
+.article-content ul,
+.article-content ol {
+  margin-bottom: 20px;
+  padding-left: 24px;
+}
+
+.article-content ul {
+  list-style: disc;
+}
+
+.article-content ol {
+  list-style: decimal;
+}
+
+.article-content li {
+  padding: 4px 0;
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+/* Blockquote */
+.article-content blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 16px 20px;
+  margin: 24px 0;
+  background-color: var(--bg-card);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 15px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Code blocks */
+.article-content code {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  background-color: var(--bg-card);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  color: var(--accent-2);
+}
+
+.article-content pre {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  overflow-x: auto;
+  margin-bottom: 24px;
+}
+
+.article-content pre code {
+  background: none;
+  padding: 0;
+}
+
+
+/* ========================================
+   26. BREADCRUMB
+   Small text trail with arrow separators.
+   ======================================== */
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-dim);
+  padding: 16px 0;
+}
+
+.breadcrumb a {
+  color: var(--text-dim);
+  transition: color 150ms ease-out;
+}
+
+.breadcrumb a:hover {
+  color: var(--text-muted);
+}
+
+/* Arrow separator */
+.breadcrumb-sep {
+  font-size: 11px;
+  color: var(--text-dim);
+  user-select: none;
+}
+
+/* Current page (no link) */
+.breadcrumb span:last-child {
+  color: var(--text-muted);
+}
+
+
+/* ========================================
+   27. DISCLAIMER BOX
+   Left-bordered info box with amber accent.
+   ======================================== */
+
+.disclaimer {
+  border-left: 3px solid var(--accent);
+  background-color: var(--bg-card);
+  padding: 20px 24px;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  margin: 24px 0;
+}
+
+.disclaimer p {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text-muted);
+  margin-bottom: 0;
+}
+
+.disclaimer p + p {
+  margin-top: 12px;
+}
+
+.disclaimer strong {
+  color: var(--text);
+}
+
+
+/* ========================================
+   28. DUAL CTA CARDS
+   Two side-by-side cards for retail/trade
+   split on homepage.
+   ======================================== */
+
+.cta-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.cta-card {
+  padding: 36px 32px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: border-color 250ms ease-out;
+}
+
+.cta-card:hover {
+  border-color: var(--border-strong);
+}
+
+.cta-card .eyebrow {
+  margin-bottom: 8px;
+}
+
+.cta-card h3 {
+  font-family: var(--font-display);
+  font-size: 28px;
+  margin-bottom: 12px;
+  line-height: 1;
+}
+
+.cta-card p {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  line-height: 1.65;
+}
+
+@media (max-width: 759px) {
+  .cta-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ========================================
+   29. SPEC CARDS
+   Small technical spec cards showing
+   data in monospace (e.g., PANEL: STRAIGHT).
+   ======================================== */
+
+.spec-card {
+  padding: 20px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.spec-card-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+
+.spec-card-value {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--text);
+}
+
+
+/* ========================================
+   30. RESPONSIVE BREAKPOINTS — GLOBAL
+   540px, 760px, 900px, 1200px.
+   Handles typography, section padding,
+   and layout shifts.
+   ======================================== */
+
+/* --- Below 1200px: container padding increase --- */
+@media (max-width: 1200px) {
+  .container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+/* --- Below 900px: reduced section padding, stacked layouts --- */
+@media (max-width: 899px) {
+  .section {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+
+  .cta-section {
+    padding: 56px 20px;
+  }
+
+  .proof-bar {
+    gap: 32px;
+  }
+}
+
+/* --- Below 760px: single-column grids, mobile bar visible --- */
+@media (max-width: 759px) {
+  .section {
+    padding-top: 44px;
+    padding-bottom: 44px;
+  }
+
+  .proof-bar {
+    gap: 24px;
+    padding: 32px 0;
+  }
+
+  .proof-stat-number {
+    font-size: 32px;
+  }
+}
+
+/* --- Below 540px: tightest spacing, full-width buttons --- */
+@media (max-width: 539px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .section {
+    padding-top: 36px;
+    padding-bottom: 36px;
+  }
+
+  .hero {
+    min-height: auto;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .hero > .container {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+}
+
+
+/* ========================================
+   31. REDUCED MOTION
+   Disables animations and transitions
+   for users who prefer reduced motion.
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* ========================================
+   32. UTILITY CLASSES
+   Small helpers for spacing, visibility,
+   and text alignment.
+   ======================================== */
+
+/* Visually hidden but accessible to screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Text alignment */
+.text-center { text-align: center; }
+.text-left   { text-align: left; }
+.text-right  { text-align: right; }
+
+/* Text colour helpers */
+.text-accent { color: var(--accent); }
+.text-muted  { color: var(--text-muted); }
+.text-dim    { color: var(--text-dim); }
+
+/* Spacing — vertical margin utilities */
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: 8px; }
+.mt-2 { margin-top: 16px; }
+.mt-3 { margin-top: 24px; }
+.mt-4 { margin-top: 32px; }
+.mt-5 { margin-top: 48px; }
+.mt-6 { margin-top: 64px; }
+
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: 8px; }
+.mb-2 { margin-bottom: 16px; }
+.mb-3 { margin-bottom: 24px; }
+.mb-4 { margin-bottom: 32px; }
+.mb-5 { margin-bottom: 48px; }
+.mb-6 { margin-bottom: 64px; }
+
+/* Padding helpers */
+.pt-0 { padding-top: 0; }
+.pb-0 { padding-bottom: 0; }
+
+/* Gap helpers for flex/grid contexts */
+.gap-sm { gap: 8px; }
+.gap-md { gap: 16px; }
+.gap-lg { gap: 24px; }
+.gap-xl { gap: 32px; }
+
+/* Display toggles */
+.desktop-only {
+  display: block;
+}
+
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 759px) {
+  .desktop-only {
+    display: none !important;
+  }
+
+  .mobile-only {
+    display: block !important;
+  }
+}
+
+/* Max-width constraint */
+.max-w-prose {
+  max-width: 720px;
+}
+
+.max-w-narrow {
+  max-width: 540px;
+}
+
+/* Flex utilities */
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+
+/* ========================================
+   33. PRINT STYLES
+   Minimal print-friendly overrides.
+   ======================================== */
+
+@media print {
+  body {
+    background: #fff;
+    color: #000;
+    font-size: 12pt;
+    padding-bottom: 0;
+  }
+
+  .nav,
+  .mobile-bar,
+  .announce,
+  .mobile-menu,
+  .btn-group,
+  .skip-link {
+    display: none !important;
+  }
+
+  .hero {
+    min-height: auto;
+    background: none;
+  }
+
+  .hero::before {
+    display: none;
+  }
+
+  .cta-section::before {
+    display: none;
+  }
+
+  a[href]::after {
+    content: ' (' attr(href) ')';
+    font-size: 10pt;
+    color: #555;
+  }
+}
+
+
+/* ========================================
+   END OF STYLESHEET
+   ======================================== */

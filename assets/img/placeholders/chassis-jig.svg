@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img">
+  <title>Chassis alignment jig with vehicle mounted</title>
+  <defs>
+    <pattern id="jg" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0v40" fill="none" stroke="#F5F5F2" stroke-opacity=".03" stroke-width=".4"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="500" fill="#0A0A0B"/>
+  <rect width="800" height="500" fill="url(#jg)"/>
+  <!-- Bench / jig platform -->
+  <g stroke="#666" stroke-width="1.2" fill="none">
+    <!-- Main platform -->
+    <rect x="80" y="400" width="640" height="20" rx="2" fill="#1a1a1e" stroke="#555"/>
+    <!-- Platform legs -->
+    <rect x="100" y="420" width="18" height="40" fill="#1a1a1e" stroke="#555"/>
+    <rect x="280" y="420" width="18" height="40" fill="#1a1a1e" stroke="#555"/>
+    <rect x="500" y="420" width="18" height="40" fill="#1a1a1e" stroke="#555"/>
+    <rect x="682" y="420" width="18" height="40" fill="#1a1a1e" stroke="#555"/>
+    <!-- Rails on bench -->
+    <line x1="80" y1="395" x2="720" y2="395" stroke="#444" stroke-width="2"/>
+    <line x1="80" y1="398" x2="720" y2="398" stroke="#444" stroke-width=".5"/>
+  </g>
+  <!-- Clamp points on bench -->
+  <g fill="#555" stroke="#777" stroke-width=".8">
+    <rect x="130" y="386" width="12" height="14" rx="1"/>
+    <rect x="230" y="386" width="12" height="14" rx="1"/>
+    <rect x="370" y="386" width="12" height="14" rx="1"/>
+    <rect x="470" y="386" width="12" height="14" rx="1"/>
+    <rect x="570" y="386" width="12" height="14" rx="1"/>
+    <rect x="660" y="386" width="12" height="14" rx="1"/>
+  </g>
+  <!-- Side-view car on jig -->
+  <g fill="none" stroke="#F5F5F2" stroke-width="1.3" stroke-linejoin="round" stroke-opacity=".85">
+    <!-- Body -->
+    <path d="M140 380 L128 345 124 320 130 295 150 280 175 268 215 250 260 238 300 228 340 222 400 220 450 222 490 228 520 238 550 252 580 270 605 290 625 310 635 330 640 350 635 380"/>
+    <!-- Roof -->
+    <path d="M260 238 L280 195 320 175 400 170 470 175 510 195 535 230" stroke-opacity=".6"/>
+    <!-- Windows -->
+    <path d="M275 235 L292 200 325 182 400 178 465 182 498 200 520 232" stroke-dasharray="3 2" stroke-opacity=".35"/>
+    <!-- Wheel arches -->
+    <path d="M160 380 Q160 340 195 340 Q230 340 230 380"/>
+    <path d="M535 380 Q535 340 570 340 Q605 340 605 380"/>
+    <!-- Wheels -->
+    <circle cx="195" cy="375" r="30" stroke-opacity=".7"/>
+    <circle cx="195" cy="375" r="19" stroke-opacity=".35"/>
+    <circle cx="570" cy="375" r="30" stroke-opacity=".7"/>
+    <circle cx="570" cy="375" r="19" stroke-opacity=".35"/>
+  </g>
+  <!-- Measurement beams — vertical lines from bench to car reference points -->
+  <g stroke="#D97706" stroke-width="1" stroke-dasharray="5 3">
+    <!-- Front subframe point -->
+    <line x1="165" y1="290" x2="165" y2="395"/>
+    <!-- A-pillar base -->
+    <line x1="270" y1="238" x2="270" y2="395"/>
+    <!-- B-pillar base -->
+    <line x1="400" y1="220" x2="400" y2="395"/>
+    <!-- C-pillar base -->
+    <line x1="520" y1="235" x2="520" y2="395"/>
+    <!-- Rear subframe point -->
+    <line x1="620" y1="310" x2="620" y2="395"/>
+  </g>
+  <!-- Measurement diamond markers at car contact points -->
+  <g fill="#D97706">
+    <polygon points="165,288 169,294 165,300 161,294"/>
+    <polygon points="270,236 274,242 270,248 266,242"/>
+    <polygon points="400,218 404,224 400,230 396,224"/>
+    <polygon points="520,233 524,239 520,245 516,239"/>
+    <polygon points="620,308 624,314 620,320 616,314"/>
+  </g>
+  <!-- Measurement labels -->
+  <g fill="#D97706" font-family="monospace" font-size="9" fill-opacity=".8">
+    <text x="155" y="350" text-anchor="middle">P1</text>
+    <text x="270" y="325" text-anchor="middle">P2</text>
+    <text x="400" y="315" text-anchor="middle">P3</text>
+    <text x="520" y="325" text-anchor="middle">P4</text>
+    <text x="620" y="355" text-anchor="middle">P5</text>
+  </g>
+  <!-- Horizontal datum line -->
+  <line x1="100" y1="295" x2="700" y2="295" stroke="#D97706" stroke-width=".5" stroke-dasharray="2 4" stroke-opacity=".3"/>
+  <text x="710" y="298" fill="#D97706" fill-opacity=".4" font-family="monospace" font-size="8">DATUM</text>
+  <!-- Title block -->
+  <rect x="570" y="20" width="200" height="50" fill="none" stroke="#D97706" stroke-opacity=".25" stroke-width=".8"/>
+  <text x="580" y="40" fill="#D97706" fill-opacity=".5" font-family="monospace" font-size="10">CHASSIS ALIGNMENT</text>
+  <text x="580" y="55" fill="#D97706" fill-opacity=".35" font-family="monospace" font-size="8">JIG REFERENCE | SIDE VIEW</text>
+</svg>

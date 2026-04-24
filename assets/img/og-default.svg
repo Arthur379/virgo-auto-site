@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img">
+  <title>Virgo Auto — Panel and structural specialists</title>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0v40" fill="none" stroke="#F5F5F2" stroke-opacity=".04" stroke-width=".5"/>
+    </pattern>
+  </defs>
+  <!-- Dark background -->
+  <rect width="1200" height="630" fill="#0A0A0B"/>
+  <!-- Grid overlay -->
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <!-- VA monogram centred -->
+  <g transform="translate(560,170) scale(2.5)">
+    <polygon points="2,4 10,4 14,28 18,4 26,4 19,36 9,36" fill="#D97706"/>
+    <polygon points="22,36 26,4 34,4 38,36 31,36 30,24 26,24 25,36" fill="#D97706"/>
+    <rect x="26" y="17" width="5" height="6" fill="#0A0A0B"/>
+  </g>
+  <!-- VIRGO AUTO text -->
+  <text x="600" y="340" text-anchor="middle" fill="#F5F5F2" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif" font-weight="900" font-size="48" letter-spacing="8">VIRGO AUTO</text>
+  <!-- Tagline -->
+  <text x="600" y="385" text-anchor="middle" fill="#F5F5F2" fill-opacity=".6" font-family="'Helvetica Neue',Arial,sans-serif" font-weight="400" font-size="20" letter-spacing="3">Panel &amp; structural specialists</text>
+  <!-- Accent line -->
+  <rect x="520" y="355" width="160" height="2" rx="1" fill="#D97706" opacity=".5"/>
+</svg>
